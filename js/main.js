@@ -107,3 +107,28 @@ function showBMI() {
   document.getElementById('bmi-answer-alert').innerHTML=bmi();
   document.getElementById('bmi-answer').className='show';
 }
+
+//MORTGAGE
+var mortgageButton = document.getElementById('mortgage-calc');
+
+mortgageButton.addEventListener('click', function() {
+  console.log('mortgage button clicked')
+  showMortgagePayment();
+});
+
+function mortgage() {
+      var loan = parseFloat(document.getElementById('mortgage-loan').value);
+      var mpr = parseFloat(document.getElementById('mortgage-apr').value)/ 100 / 12;
+      var term = parseFloat(document.getElementById('mortgage-term').value);
+
+      var temp = Math.pow((1 + mpr), term);
+      var payment = loan * mpr * temp / (temp - 1);
+      payment = Math.round(payment * 100) / 100; // round to 2 decimals
+
+      // finally, return the result
+      return( "Your monthly payment will be $" + payment);
+    }
+function showMortgagePayment() {
+  document.getElementById('mortgage-answer-alert').innerHTML=mortgage();
+  document.getElementById('mortgage-answer').className='show';
+}
