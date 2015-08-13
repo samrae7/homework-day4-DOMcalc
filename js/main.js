@@ -1,12 +1,12 @@
 console.log('hello, lauren');
-
+var answer;
 // 1. write an event listener on the basic-calc button
 
 var basicButton = document.getElementById('basic-calc');
 
 basicButton.addEventListener ('click',function() {
   console.log('click event fired');
-  alert(BasicCalc());
+  BasicCalc();
   }
 );
 
@@ -36,5 +36,15 @@ var operator = document.getElementById("basic-operation").value;
         answer = first * second;
     };
     // display the result
-return (answer);
+answer=answer.toFixed(3);
+returnAnswer();
+showAnswerBox();
 }
+
+function showAnswerBox() {
+  document.getElementById('basic-answer').className='show';
+};
+
+function returnAnswer() {
+  document.getElementById('basic-answer-alert').innerHTML=answer;
+};
