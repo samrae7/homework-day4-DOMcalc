@@ -81,7 +81,23 @@ return("Your trip will take " + time + " hours and cost $" + cost);
 }
 
 //BMI
-//NB-need to code something extra to allow user to select units
+//show change in units when user selects metric/imperial
+
+var BMIselector = document.getElementById('bmi-units');
+
+var BMIunits;
+
+BMIselector.addEventListener('change', function() {
+  BMIunits = BMIselector.value;
+  console.log(BMIunits);
+  if (BMIunits==='imperial') {
+    document.getElementById('bmi-mass-unit').innerHTML='lb';
+  } else {
+    document.getElementById('bmi-mass-unit').innerHTML='kg';
+  }
+});
+
+//Event listener
 var bmiButton = document.getElementById('bmi-calc')
 
 bmiButton.addEventListener('click', function(){
@@ -89,6 +105,7 @@ bmiButton.addEventListener('click', function(){
   showBMI();
 });
 
+//calculation
 function bmi() {
   var mass = parseFloat(document.getElementById('bmi-mass').value);
 
@@ -97,8 +114,11 @@ function bmi() {
   console.log(mass, height, mass / Math.pow(height, 2))
 
   var bmi = mass / Math.pow(height, 2);
-  bmi = Math.round(bmi * 100) / 100; // round it to two decimals
-
+  bmi = Math.round(bmi * 100) / 100;
+  // round it to two decimals
+  if (BMIunits==='imperial') {
+    bmi = bmi*703;
+  }
   // finally, display the result
   return('your BMI is ' + bmi);
 }
