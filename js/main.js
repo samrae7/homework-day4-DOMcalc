@@ -79,3 +79,31 @@ cost = Math.round(cost * 100) / 100;
 // finally, display the result
 return("Your trip will take " + time + " hours and cost $" + cost);
 }
+
+//BMI
+//NB-need to code something extra to allow user to select units
+var bmiButton = document.getElementById('bmi-calc')
+
+bmiButton.addEventListener('click', function(){
+  console.log('click event fired');
+  showBMI();
+});
+
+function bmi() {
+  var mass = parseFloat(document.getElementById('bmi-mass').value);
+
+  var height = parseFloat(document.getElementById('bmi-height').value);
+
+  console.log(mass, height, mass / Math.pow(height, 2))
+
+  var bmi = mass / Math.pow(height, 2);
+  bmi = Math.round(bmi * 100) / 100; // round it to two decimals
+
+  // finally, display the result
+  return('your BMI is ' + bmi);
+}
+
+function showBMI() {
+  document.getElementById('bmi-answer-alert').innerHTML=bmi();
+  document.getElementById('bmi-answer').className='show';
+}
